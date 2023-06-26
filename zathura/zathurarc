@@ -1,0 +1,9 @@
+map k scroll down
+map i scroll up
+map j zoom out
+map l zoom in
+
+unmap J
+unmap K
+map I  scroll full-up
+map K  scroll full-down

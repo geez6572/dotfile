@@ -43,6 +43,9 @@ ranger/plugins/devicons_linemode.pyo
 !/rofi/
 !/picom/
 !/dunst
+!/hypr/
+!/zathura/
+
 
 jesseduffield/lazynpm/state.yml
 
