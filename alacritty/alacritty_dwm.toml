@@ -1,0 +1,34 @@
+
+import = ["~/.config/alacritty/alacritty/tokyonight.toml"]
+
+[env]
+TERM="alacritty"
+
+
+# ------------------- window configuration --------------------------
+[window]
+opacity=0.8
+blur=true
+dimensions = { columns = 55, lines = 20 }
+
+
+# ------------------- font configuration --------------------------
+[font]
+size = 21
+
+builtin_box_drawing = true
+
+normal = { family = "DejaVu Sans Mono", style = "Regular" }
+bold = { family = "DejaVu Sans Mono", style = "Bold" }
+italic = { family = "DejaVu Sans Mono", style = "Italic" }
+bold_italic = { family = "DejaVu Sans Mono", style = "Bold Italic" }
+offset = {x=2,y=2}
+
+[cursor]
+blink_interval = 550
+unfocused_hollow = false
+thickness = 0.15
+
+[cursor.style]
+blinking = "On"
+shape = "Beam"

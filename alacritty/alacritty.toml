@@ -1,0 +1,41 @@
+
+[env]
+TERM="alacritty"
+
+
+# ------------------- window configuration --------------------------
+[window]
+opacity=0.9
+blur=true
+dynamic_padding = true
+
+# ------------------- font configuration --------------------------
+[font]
+size = 19
+
+builtin_box_drawing = true
+
+# normal = { family = "Fira Code", style = "Regular" }
+# normal = { family = "Hack", style = "Bold Italic" }
+normal = { family = "Maple Mono", style = "Italic" }
+# normal = { family = "Jetbrains Mono", style = "Italic" }
+# normal = { family = "Dejavu Sans Mono", style = "Italic" }
+# normal = { family = "Source Code Pro", style = "Regular" }
+
+bold = { family = "Maple Mono", style = "Italic" }
+italic = { family = "Maple Mono", style = "Italic" }
+bold_italic = { family = "Maple Mono", style = "Italic" }
+offset = {x=1,y=1}
+
+[cursor]
+blink_interval = 550
+unfocused_hollow = false
+thickness = 0.15
+
+[cursor.style]
+blinking = "Always"
+shape = "Beam"
+
+[general]
+
+import = ["~/.config/alacritty/alacritty/tokyonight.toml"]
