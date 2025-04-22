@@ -1,0 +1,98 @@
+{
+  "geometry-of-main_window_geometry": {
+    "frame_geometry": {
+      "height": 1028,
+      "width": 945,
+      "x": 0,
+      "y": 0
+    },
+    "full_screened": false,
+    "geometry": {
+      "height": 1028,
+      "width": 945,
+      "x": 0,
+      "y": 0
+    },
+    "maximized": true,
+    "normal_geometry": {
+      "height": 1048,
+      "width": 960,
+      "x": 0,
+      "y": 0
+    },
+    "qt": {
+      "__class__": "bytearray",
+      "__value__": "AdnQywADAAAAAAAAAAAAAAAAA7AAAAQDAAAAAAAAAAAAAAO/AAAEFwAAAAACAAAAB4AAAAAAAAAAAAAAA7AAAAQD"
+    },
+    "screen": {
+      "depth": 32,
+      "device_pixel_ratio": 1.0,
+      "geometry_in_logical_pixels": {
+        "height": 1080,
+        "width": 1920,
+        "x": 0,
+        "y": 0
+      },
+      "index_in_screens_list": 0,
+      "manufacturer": "Xiaomi Corporation",
+      "model": "A24FAA-RG",
+      "name": "DP-1",
+      "serial": "",
+      "size_in_logical_pixels": {
+        "height": 1080,
+        "width": 1920
+      },
+      "virtual_geometry": {
+        "height": 1080,
+        "width": 1920,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "main_window_state": {
+    "__class__": "bytearray",
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAAAAAAAAPwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAA/////wAAAIYA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAlAD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAAB7AP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOYA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEgD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAM8A////AAADsQAABAQAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+  },
+  "old_prefs_migrated": true,
+  "session_data": {
+    "controls_help_shown_count": 2,
+    "standalone_font_settings": {},
+    "standalone_misc_settings": {
+      "remember_last_read": true,
+      "remember_window_geometry": false,
+      "save_annotations_in_ebook": true,
+      "singleinstance": false
+    },
+    "standalone_recently_opened": [
+      {
+        "authors": [
+          "LEGION"
+        ],
+        "key": "/home/ce/Downloads/1、20道基础面试题目，全是选择题(1).docx",
+        "pathtoebook": "/home/ce/Downloads/1、20道基础面试题目，全是选择题(1).docx",
+        "timestamp": "2025-03-05T04:33:04.183Z",
+        "title": "1、20道基础面试题目，全是选择题(1)"
+      },
+      {
+        "authors": [
+          "沃伯顿",
+          "埃文斯",
+          "弗拉纳根",
+          "奥克斯",
+          "美·艾伦·唐尼",
+          "克里斯·梅菲尔德",
+          "肯·寇森",
+          "哈维尔·费尔南德斯·冈萨雷斯",
+          "拉乌尔·加布里埃尔·乌尔玛",
+          "马里奥·富斯科",
+          "艾伦·米克罗夫特"
+        ],
+        "key": "/home/ce/Calibre Library/Wo Bo Dun/Tu Ling Cheng Xu She Ji Cong Shu _JavaJin Jie Gao Shou (Tao Zhuang Quan 8Ce ) (97)/Tu Ling Cheng Xu She Ji Cong Shu _JavaJin - Wo Bo Dun.epub",
+        "pathtoebook": "/home/ce/Calibre Library/Wo Bo Dun/Tu Ling Cheng Xu She Ji Cong Shu _JavaJin Jie Gao Shou (Tao Zhuang Quan 8Ce ) (97)/Tu Ling Cheng Xu She Ji Cong Shu _JavaJin - Wo Bo Dun.epub",
+        "timestamp": "2025-02-19T08:31:26.162Z",
+        "title": "图灵程序设计丛书：Java进阶高手（套装全8册）"
+      }
+    ]
+  }
+}

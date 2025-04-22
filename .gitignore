@@ -1,0 +1,32 @@
+# ignore evething
+/*
+/*/
+
+# ... but theres
+!/alacritty/
+!/btop/
+!/calibre/
+!/fcitx/
+!/fcitx5/
+!/foot/
+!/fuzzel/
+!/hypr/
+!/kitty/
+!/neofetch/
+!/nvim/
+!/polybar/
+!/ranger/
+!/rofi/
+!/tmux/
+!/waybar/
+!/wezterm/
+!/yazi/
+!/zathura/
+!/zsh/
+!/zshconf/
+!/zshrc.d/
+!/.gitignore
+!/.vimium
+!/.vimium.conf
+!/init.vim
+!/vimrc
