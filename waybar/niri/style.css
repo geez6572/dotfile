@@ -1,0 +1,122 @@
+/* 
+ * Tokyo Night Color Palette (Blur Version)
+ */
+
+* {
+    font-family: "Maple Mono", "Font Awesome 6 Free", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* --- 核心修改：整个 Bar 的背景 --- */
+window#waybar {
+    /* 使用 rgba 设置背景色，最后一位 0.6 是透明度 (0-1) */
+    /* 配合 Hyprland 的 layerrule = blur，这里必须半透明 */
+    background-color: rgba(26, 27, 38, 0.6); 
+    color: #c0caf5;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/* --- 去除模块的分组背景，让它们融入整体 --- */
+.modules-left, .modules-center, .modules-right {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 按钮通用重置 */
+button {
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
+    border-radius: 0;
+}
+
+button:hover {
+    background: rgba(192, 202, 245, 0.1); /* 鼠标悬停时微微发亮 */
+    box-shadow: none;
+    text-shadow: none;
+}
+
+/* --- Workspaces (工作区) --- */
+#workspaces button {
+    color: #565f89;
+    padding: 0 10px; /* 增加一点间距 */
+    transition: all 0.3s ease;
+}
+
+#workspaces button.active {
+    color: #7aa2f7;
+    /* 给激活的工作区加一个下划线或背景指示，看你喜好 */
+    border-bottom: 2px solid #7aa2f7; 
+}
+
+#workspaces button:hover {
+    color: #c0caf5;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- 模块通用间距 --- */
+#clock,
+#pulseaudio,
+#network,
+#cpu,
+#memory,
+#disk,
+#battery,
+#tray,
+#custom-exit,
+#custom-appmenu,
+#power-profiles-daemon,
+#custom-cliphist,
+#custom-hypridle,
+#custom-hyprshade{
+    padding: 0 15px; /* 让图标不要挤在一起 */
+}
+
+/* --- 颜色定义 (Tokyo Night) --- */
+
+#custom-appmenu { color: #7aa2f7; font-size: 18px; padding-left: 15px; }
+
+#clock { color: #c0caf5; font-weight: 900; }
+
+#cpu { color: #f7768e; }
+#memory { color: #9ece6a; }
+#disk { color: #e0af68; }
+
+#network { color: #bb9af7; }
+#pulseaudio { color: #7dcfff; }
+
+#battery { color: #9ece6a; }
+#battery.charging { color: #e0af68; }
+#battery.warning:not(.charging) { color: #ff9e64; }
+#battery.critical:not(.charging) { color: #f7768e; animation-name: blink; animation-duration: 0.5s; animation-iteration-count: infinite; animation-direction: alternate; }
+
+#custom-exit {
+    color: #f7768e;
+    padding-right: 15px; 
+}
+
+/* 硬件组和工具组的特殊处理 */
+#group-hardware, #group-tools {
+    padding: 0 5px;
+    margin: 0 5px;
+    /* 可选：给这些组加一个淡淡的背景区分，或者保持透明 */
+    background-color: rgba(255, 255, 255, 0.05); 
+    border-radius: 4px;
+}
+
+@keyframes blink {
+    to { color: #ffffff; }
+}
+#custom-cliphist { color: #bb9af7; }      /* 剪贴板 - 紫色 */
+#custom-hypridle { color: #ff9e64; }      /* 闲置控制 - 橙色 */
+#custom-hyprshade { color: #7dcfff; }     /* 滤镜 - 蓝青色 */
+#power-profiles-daemon { color: #9ece6a; } /* 电源模式 - 绿色 */
+#hyprland-language { color: #7aa2f7; }    /* 语言 - 蓝色 */

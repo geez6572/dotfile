@@ -27,27 +27,10 @@ set scrolloff=4
 "jump the cursor to the last position
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-silent !mkdir -p $HOME/.config/nvim/tmp/backup
-silent !mkdir -p $HOME/.config/nvim/tmp/undo
-"silent !mkdir -p $HOME/.config/nvim/tmp/sessions
-set backupdir=$HOME/.config/nvim/tmp/backup,.
-set directory=$HOME/.config/nvim/tmp/backup,.
-
 " set vim using system clipboard
 set clipboard=unnamedplus
 
 "nvim快捷键的绑定设置
-
-
-"将nvim普通模式下的光标移动 h,j,k,l 改成：
-"     ^
-"     i
-" < j   l >
-"     k
-"     v
-noremap i k
-noremap k j
-noremap j h
 
 "i键原来已经使用，需要将他绑定到其快捷键上
 noremap h i
@@ -62,7 +45,6 @@ inoremap  jj   <esc>
 map s <nop>
 map S :w<CR>
 map Q :q<CR>
-map R :source $HOME/.config/nvim/init.vim<CR>
 
 
 "split screen

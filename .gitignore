@@ -30,3 +30,6 @@
 !/.vimium.conf
 !/init.vim
 !/vimrc
+!/mimeapps.list
+!/keyd/
+!/ghostty/

@@ -1,0 +1,116 @@
+/* 
+ * Rofi Config for Wallpaper (Card Ratio 4:5)
+ * Layout: 1 Row, 5 Columns
+ */
+
+* {
+    font: "JetBrainsMono Nerd Font Bold 10";
+
+    bg-col:       #1a1b26;
+    border-col:   #7aa2f7;
+    selected-col: #c0caf5;
+    
+    background-color: transparent;
+    text-color:       #c0caf5;
+    
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    /* 位置保持靠上 */
+    location:       north;
+    y-offset:       150px;
+    
+    /* 宽度保持 92%，刚好容纳 5 个宽卡片 */
+    width:          92%;
+    /* 高度调整：图片高400 + 文字 + 内边距，约 550px 就够了 */
+    height:         580px;
+    
+    border:         0px;
+    background-color: transparent;
+    children:       [ mainbox ];
+}
+
+mainbox {
+    padding: 20px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    background-color: #1a1b26E6;
+    border-radius:    8px;
+    padding:          8px 16px;
+    margin:           0 35% 30px 35%; 
+    children:         [ prompt, entry ];
+    border:           1px;
+    border-color:     @border-col;
+}
+
+prompt {
+    text-color:       @border-col;
+    margin:           0 10px 0 0;
+    content:          "🖼️ Select:";
+}
+
+entry {
+    placeholder:      "Search...";
+    placeholder-color: #565f89;
+}
+
+/* --- 列表布局 --- */
+listview {
+    /* 修改为 5 列 */
+    columns:       5;
+    lines:         1; 
+    fixed-columns: true;   
+    cycle:         true;
+    dynamic:       true;
+    scrollbar:     false;
+    layout:        vertical; 
+    
+    /* 间隔可以稍微大一点，因为只有5列，空间比较富裕 */
+    spacing:       50px; 
+}
+
+element {
+    orientation:      vertical;
+    padding:          0px;
+    border-radius:    12px;
+    background-color: #1a1b26; 
+    cursor:           pointer;
+    border:           3px;
+    border-color:     transparent;
+}
+
+element selected.normal {
+    border-color:     @border-col;
+    background-color: #24283b;
+    /* 选中上浮效果 */
+    margin: -4px 0 4px 0;
+}
+
+/* --- 图片区域 --- */
+element-icon {
+    /* 
+     * 【关键调整】
+     * 配合脚本里的 THUMB_H=400
+     * 这里设置 size (高度) 为 400px
+     * 宽度会按 4:5 比例自动变为 320px
+     */
+    size:             400px; 
+    horizontal-align: 0.5;
+    background-color: transparent;
+    cursor:           inherit;
+    margin:           0;
+}
+
+/* --- 文字 (文件名) --- */
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    horizontal-align: 0.5;
+    padding:          12px 5px;
+    font:             "JetBrainsMono Nerd Font Bold 11";
+}

@@ -1,0 +1,107 @@
+/* 
+ * Rofi Config for Clipboard (Tokyo Night Theme)
+ * Author: AI Assistant
+ */
+
+/* --- 变量定义 (Tokyo Night Palette) --- */
+* {
+    font: "JetBrainsMono Nerd Font Bold 12";
+
+    /* 核心配色 */
+    bg0:     #1a1b26; /* 主背景 */
+    bg1:     #24283b; /* 输入框/选中背景 */
+    fg0:     #c0caf5; /* 主文字 */
+    accent:  #7aa2f7; /* 强调色 (蓝色) */
+    urgent:  #f7768e; /* 紧急色 (红色) */
+
+    background-color: transparent;
+    text-color:       @fg0;
+    
+    margin:  0;
+    padding: 0;
+    spacing: 0;
+}
+
+/* --- 窗口设定 --- */
+window {
+    location:       center;
+    width:          600px; /* 宽度适中，方便阅读长文本 */
+    border-radius:  12px;  /* 圆角 */
+    background-color: @bg0;
+    border:         2px;
+    border-color:   @accent;
+}
+
+/* --- 整体容器 --- */
+mainbox {
+    padding: 12px;
+}
+
+/* --- 输入框区域 --- */
+inputbar {
+    background-color: @bg1;
+    border-radius:    8px;
+    padding:          8px 12px;
+    margin:           0 0 12px 0; /* 与列表留出间距 */
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    background-color: transparent;
+    text-color:       @accent;
+    enabled:          true;
+    margin:           0 12px 0 0;
+    padding:          0;
+    content:          " CLIPCARD"; /* 提示文字 */
+}
+
+entry {
+    background-color: transparent;
+    text-color:       @fg0;
+    placeholder:      "Search...";
+    placeholder-color: #565f89;
+}
+
+/* --- 列表区域 --- */
+listview {
+    lines:      10;      /* 显示10行 */
+    columns:    1;       /* 单列显示 */
+    scrollbar:  false;   /* 隐藏滚动条 */
+    fixed-height: false;
+}
+
+/* --- 列表项 --- */
+element {
+    padding:        8px 12px;
+    border-radius:  8px;
+    spacing:        10px;
+    background-color: transparent;
+    text-color:     @fg0;
+}
+
+element normal.normal {
+    background-color: transparent;
+}
+
+element alternate.normal {
+    background-color: transparent; /* 可以改成 @bg1 做斑马纹 */
+}
+
+element selected.normal {
+    background-color: @bg1;      /* 选中项背景 */
+    text-color:       @accent;   /* 选中项文字变蓝 */
+}
+
+/* --- 图标与文字 --- */
+element-icon {
+    size:           24px;
+    background-color: transparent;
+    text-color:       inherit;
+    vertical-align:   0.5; /* 垂直居中 */
+}
+
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+    vertical-align:   0.5;
+}

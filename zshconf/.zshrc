@@ -217,6 +217,7 @@ zinit light blahgeek/emacs-lsp-booster
 alias zshconf="$EDITOR $HOME/.zshrc; $EDITOR $HOME/.zshrc.local"
 alias h='history'
 alias c='clear'
+
 # alias man='tldr'
 #alias ra='yazi'
 function ra() {
@@ -254,7 +255,6 @@ fi
 (( $+commands[dust] )) && alias du=dust
 (( $+commands[hyperfine] )) && alias benchmark=hyperfine
 (( $+commands[gping] )) && alias ping=gping
-
 # Git
 alias gtr='git tag -d $(git tag) && git fetch --tags' # Refresh local tags from remote
 

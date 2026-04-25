@@ -125,3 +125,4 @@ export GOPROXY=https://proxy.golang.com.cn,direct
 # export GOPRIVATE=
 #
 eval "$(zoxide init zsh)"
+alias cd="z"

@@ -1,0 +1,216 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 50,
+  "margin-top": 6,
+  "margin-left": 10,
+  "margin-right": 10,
+  "spacing": 0,
+  // --- 布局定义 (Layout) ---
+  "modules-left": [
+    "custom/appmenu",
+    "custom/wallpaper",
+    "niri/workspaces",
+    "niri/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "battery",
+    "disk",
+    "cpu",
+    "memory",
+    "power-profiles-daemon",
+    "custom/cliphist",
+    "custom/hypridle",
+    "custom/hyprshade",
+    "tray",
+    "custom/exit"
+  ],
+  "niri/workspaces": {
+    // 方式 1: 显示数字索引 (1, 2, 3...)
+    "format": "{index}",
+    // 方式 2: 显示图标 (如果你想要圆点)
+    // "format": "{icon}",
+    // "format-icons": {
+    //     "active": "",
+    //     "default": ""
+    // },
+    // 点击切换工作区
+    "on-click": "activate"
+    // 注意：Niri 不支持 persistent-workspaces (它是动态的，有窗口才有工作区)
+  },
+  "niri/window": {
+    "format": "{}",
+    // 这里也可以加 max-length，但通常不需要 separate-outputs，Niri 会自动处理
+    "rewrite": {
+      "(.*) - Mozilla Firefox": "Firefox",
+      "(.*) - Visual Studio Code": "VS Code"
+    }
+  },
+  "custom/empty": {
+    "format": ""
+  },
+  "custom/tools": {
+    "format": "",
+    "tooltip-format": "Tools"
+  },
+  "custom/cliphist": {
+    "format": "",
+    "on-click": "sleep 0.1 && ~/.config/waybar/scripts/cliphist.sh",
+    "on-click-right": "sleep 0.1 && ~/.config/waybar/scripts/cliphist.sh d",
+    "on-click-middle": "sleep 0.1 && ~/.config/waybar/scripts/cliphist.sh w",
+    "tooltip-format": "Left: Open clipboard Manager\nRight: Delete an entry\nMiddle: Clear list"
+  },
+  "custom/wallpaper": {
+    "format": "",
+    "on-click": "bash -c waypaper &",
+    "on-click-right": "~/.config/hypr/scripts/wallpaper-effects.sh",
+    "tooltip-format": "Left: Select a wallpaper\nRight: Select wallpaper effect"
+  },
+  "custom/appmenu": {
+    "format": "Apps",
+    "on-click": "~/.config/hypr/scripts/launch.sh",
+    "on-click-right": "~/.config/hypr/scripts/keybindings.sh",
+    "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings"
+  },
+  "custom/exit": {
+    "format": "",
+    "on-click": "~/.config/waybar/scripts/wlogout.sh",
+    "on-click-right": "hyprlock",
+    "tooltip-format": "Left: Power menu\nRight: Lock screen"
+  },
+  "custom/hyprshade": {
+    "format": "",
+    "tooltip-format": "Toggle Screen Shader",
+    "on-click": "sleep 0.5; ~/.config/hypr/scripts/hyprshade.sh",
+    "on-click-right": "sleep 0.5; ~/.config/hypr/scripts/hyprshade.sh rofi"
+  },
+  "custom/hypridle": {
+    "format": "",
+    "return-type": "json",
+    "escape": true,
+    "exec-on-event": true,
+    "interval": 60,
+    "exec": "~/.config/hypr/scripts/hypridle.sh status",
+    "on-click": "~/.config/hypr/scripts/hypridle.sh toggle"
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+  "clock": {
+    "format": "{:%H:%M %a}",
+    "on-click": "flatpak run com.ml4w.calendar",
+    "timezone": "",
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": 10,
+    "format": " {usage}%", // 图标 + 百分比
+    "max-length": 10,
+    "on-click": "~/.config/waybar/scripts/system-monitor.sh"
+  },
+  "memory": {
+    "interval": 30,
+    "format": " {}%", // 图标 + 百分比
+    "max-length": 10,
+    "tooltip": true,
+    "tooltip-format": "Memory - {used:0.1f}GB used",
+    "on-click": "~/.config/waybar/scripts/system-monitor.sh"
+  },
+  "disk": {
+    "interval": 30,
+    "format": " {percentage_used}%", // 图标 + 百分比
+    "path": "/",
+    "on-click": "~/.config/waybar/scripts/system-monitor.sh"
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "",
+    "format-ethernet": "",
+    "format-disconnected": "⚠",
+    "tooltip-format": " {ifname} via {gwaddri}",
+    "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+    "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "on-click": "~/.config/waybar/scripts/networkmanager.sh",
+    "on-click-right": "~/.config/waybar/scripts/nm-applet.sh toggle"
+  },
+  "battery": {
+    "interval": 1,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon}  {time}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-bluetooth-muted": " {icon}",
+    "format-muted": "",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "scroll-step": 1
+  }
+}

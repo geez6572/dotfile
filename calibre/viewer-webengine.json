@@ -1,28 +1,28 @@
 {
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
-      "height": 1028,
-      "width": 945,
-      "x": 0,
-      "y": 0
+      "height": 992,
+      "width": 1888,
+      "x": -3,
+      "y": -30
     },
     "full_screened": false,
     "geometry": {
-      "height": 1028,
-      "width": 945,
+      "height": 959,
+      "width": 1882,
       "x": 0,
       "y": 0
     },
-    "maximized": true,
+    "maximized": false,
     "normal_geometry": {
-      "height": 1048,
-      "width": 960,
+      "height": 959,
+      "width": 1882,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAAAAAAAAAAAA7AAAAQDAAAAAAAAAAAAAAO/AAAEFwAAAAACAAAAB4AAAAAAAAAAAAAAA7AAAAQD"
+      "__value__": "AdnQywADAAD////9////4gAAB1wAAAPBAAAAAAAAAAAAAAdZAAADvgAAAAAAAAAAB4AAAAAAAAAAAAAAB1kAAAO+"
     },
     "screen": {
       "depth": 32,
@@ -34,8 +34,8 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "Xiaomi Corporation",
-      "model": "A24FAA-RG",
+      "manufacturer": "SKYDATA S.P.A.",
+      "model": "SKYWORTH MNT",
       "name": "DP-1",
       "serial": "",
       "size_in_logical_pixels": {
@@ -52,10 +52,11 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAAAAAAAAPwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAA/////wAAAIYA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAlAD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAAB7AP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAOYA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAEgD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAAM8A////AAADsQAABAQAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
+    "__value__": "AAAA/wAAAAH9AAAAAgAAAAAAAAAAAAAAAPwCAAAAAvsAAAAQAHQAbwBjAC0AZABvAGMAawAAAAAA/////wAAAIoA////+wAAABYAcwBlAGEAcgBjAGgALQBkAG8AYwBrAAAAAAD/////AAAAmgD///8AAAABAAAAAAAAAAD8AgAAAAT7AAAAFgBsAG8AbwBrAHUAcAAtAGQAbwBjAGsAAAAAAP////8AAACDAP////sAAAAcAGIAbwBvAGsAbQBhAHIAawBzAC0AZABvAGMAawAAAAAA/////wAAAPIA////+wAAABwAaQBuAHMAcABlAGMAdABvAHIALQBkAG8AYwBrAAAAAAD/////AAAAFAD////7AAAAHgBoAGkAZwBoAGwAaQBnAGgAdABzAC0AZABvAGMAawAAAAAA/////wAAANcA////AAAHWgAAA78AAAAEAAAABAAAAAgAAAAI/AAAAAEAAAAAAAAAAQAAAB4AYQBjAHQAaQBvAG4AcwBfAHQAbwBvAGwAYgBhAHICAAAAAP////8AAAAAAAAAAA=="
   },
   "old_prefs_migrated": true,
   "session_data": {
+    "base_font_size": 29,
     "controls_help_shown_count": 2,
     "standalone_font_settings": {},
     "standalone_misc_settings": {
@@ -65,6 +66,15 @@
       "singleinstance": false
     },
     "standalone_recently_opened": [
+      {
+        "authors": [
+          "(美）David Thomas（大卫·托马斯），Andrew Hunt（安德鲁·亨特）"
+        ],
+        "key": "/home/ce/Calibre Library/(Mei )David Thomas(Da Wei _Tuo Ma Si ),Andrew Hunt(An De Lu _Heng Te )/Cheng Xu Yuan Xiu Lian Zhi Dao _Tong Xiang Wu Shi De Zui Gao Jing Jie (Di 2Ban ) (114)/Cheng Xu Yuan Xiu Lian Zhi Dao _Tong Xiang - (Mei )David Thomas(Da Wei _Tuo Ma Si ),And.epub",
+        "pathtoebook": "/home/ce/Calibre Library/(Mei )David Thomas(Da Wei _Tuo Ma Si ),Andrew Hunt(An De Lu _Heng Te )/Cheng Xu Yuan Xiu Lian Zhi Dao _Tong Xiang Wu Shi De Zui Gao Jing Jie (Di 2Ban ) (114)/Cheng Xu Yuan Xiu Lian Zhi Dao _Tong Xiang - (Mei )David Thomas(Da Wei _Tuo Ma Si ),And.epub",
+        "timestamp": "2026-04-22T11:32:12.778Z",
+        "title": "程序员修炼之道：通向务实的最高境界（第2版）"
+      },
       {
         "authors": [
           "LEGION"

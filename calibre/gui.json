@@ -7,6 +7,21 @@
     "__class__": "bytearray",
     "__value__": "AAAA/wAAAAEAAAACAAABbwAAAQAA/////wEAAAABAA=="
   },
+  "cover_grid_background": {
+    "dark": [
+      45,
+      45,
+      45
+    ],
+    "dark_texture": null,
+    "light": [
+      80,
+      80,
+      80
+    ],
+    "light_texture": null,
+    "migrated": true
+  },
   "custom_colors_for_color_dialog": [
     [
       255,
@@ -107,28 +122,28 @@
   ],
   "geometry-of-calibre_main_window_geometry": {
     "frame_geometry": {
-      "height": 1028,
-      "width": 1900,
+      "height": 991,
+      "width": 1914,
       "x": 0,
       "y": 0
     },
     "full_screened": false,
     "geometry": {
-      "height": 1028,
-      "width": 1900,
+      "height": 991,
+      "width": 1914,
       "x": 0,
       "y": 0
     },
     "maximized": true,
     "normal_geometry": {
-      "height": 1048,
-      "width": 960,
+      "height": 991,
+      "width": 1914,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAAAAAAAAAAAB2sAAAQDAAAAAAAAAAAAAAO/AAAEFwAAAAACAAAAB4AAAAAAAAAAAAAAB2sAAAQD"
+      "__value__": "AdnQywADAAAAAAAAAAAAAAAAB3kAAAPeAAAAAAAAAAAAAAd5AAAD3gAAAAACAAAAB4AAAAAAAAAAAAAAB3kAAAPe"
     },
     "screen": {
       "depth": 32,
@@ -140,8 +155,8 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "Xiaomi Corporation",
-      "model": "A24FAA-RG",
+      "manufacturer": "SKYDATA S.P.A.",
+      "model": "SKYWORTH MNT",
       "name": "DP-1",
       "serial": "",
       "size_in_logical_pixels": {
@@ -158,17 +173,17 @@
   },
   "geometry-of-choose-merge-dialog-geometry": {
     "frame_geometry": {
-      "height": 329,
-      "width": 645,
-      "x": 0,
-      "y": 0
+      "height": 351,
+      "width": 649,
+      "x": 636,
+      "y": 382
     },
     "full_screened": false,
     "geometry": {
       "height": 329,
       "width": 645,
-      "x": 0,
-      "y": 0
+      "x": 638,
+      "y": 402
     },
     "maximized": true,
     "normal_geometry": {
@@ -179,10 +194,10 @@
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAAAAAAAAAAAAoQAAAFIAAAAAAAAAAAAAAKEAAABSAAAAAACAAAAB4AAAAAAAAAAAAAAAoQAAAFI"
+      "__value__": "AdnQywADAAAAAAJ8AAABfgAABQQAAALcAAAAAAAAAAAAAAKEAAABSAAAAAACAAAAB4AAAAJ+AAABkgAABQIAAALa"
     },
     "screen": {
-      "depth": 32,
+      "depth": 24,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
         "height": 1080,
@@ -191,8 +206,8 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "Xiaomi Corporation",
-      "model": "A24FAA-RG",
+      "manufacturer": "SKYDATA S.P.A.",
+      "model": "SKYWORTH MNT",
       "name": "DP-1",
       "serial": "",
       "size_in_logical_pixels": {
@@ -311,7 +326,7 @@
   },
   "grid view visible": false,
   "library_usage_stats": {
-    "/home/ce/Calibre Library": 84
+    "/home/ce/Calibre Library": 166
   },
   "main_window_central_widget_state": {
     "layout": "wide",

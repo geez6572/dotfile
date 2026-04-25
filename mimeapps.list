@@ -1,0 +1,31 @@
+[Added Associations]
+application/zip=ark.desktop;
+x-scheme-handler/tonsite=org.telegram.desktop.desktop;
+x-scheme-handler/clash=clash-verge.desktop;
+x-scheme-handler/clash-verge=clash-verge.desktop;
+[Default Applications]
+application/zip=org.kde.ark.desktop
+x-scheme-handler/clash=clash-verge.desktop;
+x-scheme-handler/clash-verge=clash-verge.desktop;
+x-scheme-handler/baiduyunguanjia=baidunetdisk.desktop
+application/pdf=org.kde.okular.desktop
+application/x-rar=org.kde.ark.desktop
+application/x-7z-compressed=org.kde.ark.desktop
+application/x-tar=org.kde.ark.desktop
+application/gzip=org.kde.ark.desktop
+application/x-bzip2=org.kde.ark.desktop
+application/x-xz=org.kde.ark.desktop
+application/zstd=org.kde.ark.desktop
+application/x-lzma=org.kde.ark.desktop
+application/vnd.ms-cab-compressed=org.kde.ark.desktop
+application/x-arj=org.kde.ark.desktop
+application/x-cd-image=org.kde.ark.desktop
+x-scheme-handler/tonsite=org.telegram.desktop.desktop
+x-scheme-handler/mailto=google-chrome.desktop
+image/jpeg=org.gnome.gThumb.desktop
+image/jpg=org.gnome.gThumb.desktop
+image/png=org.gnome.gThumb.desktop
+image/gif=org.gnome.gThumb.desktop
+image/webp=org.gnome.gThumb.desktop
+image/bmp=org.gnome.gThumb.desktop
+image/svg+xml=org.gnome.gThumb.desktop

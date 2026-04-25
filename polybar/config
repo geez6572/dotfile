@@ -1,0 +1,232 @@
+;==========================================================
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;   Tokyo Night Theme Polybar Configuration
+;
+;==========================================================
+
+[colors]
+; Tokyo Night 主题配色
+background = #1a1b26
+background-alt = #24283b
+foreground = #c0caf5
+primary = #7aa2f7
+secondary = #bb9af7
+alert = #f7768e
+warning = #e0af68
+success = #9ece6a
+info = #7dcfff
+disabled = #565f89
+
+; 半透明背景
+background-transparent = #cc1a1b26
+
+[bar/main]
+; 显示器设置
+monitor = ${env:MONITOR:}
+width = 100%
+height = 30
+radius = 12.0
+fixed-center = true
+
+; 背景和边框
+background = ${colors.background-transparent}
+foreground = ${colors.foreground}
+
+; 边框设置
+border-size = 2
+border-color = ${colors.background-alt}
+
+; 内边距
+padding-left = 2
+padding-right = 2
+
+; 模块间距
+module-margin-left = 1
+module-margin-right = 1
+
+; 字体设置
+font-0 = "JetBrainsMono Nerd Font:size=14;2"
+font-1 = "JetBrainsMono Nerd Font:size=20;3"
+font-2 = "JetBrainsMono Nerd Font:size=20;4"
+
+; 模块布局
+modules-left = i3 xwindow
+modules-center = date
+modules-right =  pulseaudio memory cpu temperature battery network 
+
+; 托盘设置
+tray-position = right
+tray-padding = 2
+tray-background = ${colors.background}
+
+; 窗口管理器设置
+wm-restack = i3
+override-redirect = false
+
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:50:...%
+label-foreground = ${colors.foreground}
+format-prefix = "  "
+format-prefix-foreground = ${colors.primary}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; 仅显示当前输出的工作区
+pin-workspaces = true
+
+; 工作区状态
+label-mode-padding = 2
+label-mode-foreground = ${colors.background}
+label-mode-background = ${colors.primary}
+
+; 聚焦的工作区
+label-focused = %index%
+label-focused-background = ${colors.primary}
+label-focused-foreground = ${colors.background}
+label-focused-padding = 2
+label-focused-margin = 1
+
+; 未聚焦但有窗口的工作区
+label-unfocused = %index%
+label-unfocused-background = ${colors.background-alt}
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-padding = 2
+label-unfocused-margin = 1
+
+; 可见但未聚焦的工作区
+label-visible = %index%
+label-visible-background = ${colors.background-alt}
+label-visible-foreground = ${colors.foreground}
+label-visible-padding = 2
+label-visible-margin = 1
+
+; 紧急工作区
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-foreground = ${colors.background}
+label-urgent-padding = 2
+label-urgent-margin = 1
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = " %Y-%m-%d"
+time = %H:%M:%S
+
+label = %date% %time%
+label-foreground = ${colors.foreground}
+format-prefix = "  "
+format-prefix-foreground = ${colors.info}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = | <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
+
+label-muted = 󰖁 muted
+label-muted-foreground = ${colors.disabled}
+
+ramp-volume-0 = 󰖀
+ramp-volume-1 = 󰖀
+ramp-volume-2 = 󰕾
+ramp-volume-foreground = ${colors.success}
+
+click-right = pavucontrol
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "| "
+format-prefix-foreground = ${colors.warning}
+label = 󰍛 %mb_used%
+label-foreground = ${colors.foreground}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "| "
+format-prefix-foreground = ${colors.secondary}
+label = 󰻠 %percentage:2%%
+label-foreground = ${colors.foreground}
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+
+format-charging = <animation-charging> <label-charging>
+label-charging = | battery:%percentage%%
+label-charging-foreground = ${colors.foreground}
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = :%percentage%%
+label-discharging-foreground = ${colors.foreground}
+
+format-full = <label-full>
+format-full-prefix = "| 󰁹 "
+format-full-prefix-foreground = ${colors.success}
+label-full = %percentage%%
+label-full-foreground = ${colors.foreground} 
+
+ramp-capacity-0 = 󰁺
+ramp-capacity-1 = 󰁼
+ramp-capacity-2 = 󰁾
+ramp-capacity-3 = 󰂀
+ramp-capacity-4 = 󰂂
+ramp-capacity-foreground = ${colors.warning}
+
+animation-charging-0 = 󰢟
+animation-charging-1 = 󰢠
+animation-charging-2 = 󰢡
+animation-charging-3 = 󰢢
+animation-charging-4 = 󰢣
+animation-charging-5 = 󰢤
+animation-charging-foreground = ${colors.success}
+animation-charging-framerate = 750
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 70
+
+format-prefix = ""
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+label =   %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.alert}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.info}
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini

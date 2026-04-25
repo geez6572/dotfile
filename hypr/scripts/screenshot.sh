@@ -1,63 +1,262 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+#                                 __        __ 
+#   ___ ___________ ___ ___  ___ / /  ___  / /_
+#  (_-</ __/ __/ -_) -_) _ \(_-</ _ \/ _ \/ __/
+# /___/\__/_/  \__/\__/_//_/___/_//_/\___/\__/ 
+#                                              
+# Based on https://github.com/hyprwm/contrib/blob/main/grimblast/screenshot.sh
 
-# Restores the shader after screenshot has been taken
-restore_shader() {
-	if [ -n "$shader" ]; then
-		hyprshade on "$shader"
-	fi
+# -----------------------------------------------------
+
+# Screenshots will be stored in $HOME by default.
+# The screenshot will be moved into the screenshot directory
+
+# Add this to ~/.config/user-dirs.dirs to save screenshots in a custom folder:
+# XDG_SCREENSHOTS_DIR="$HOME/Screenshots"
+
+prompt='Screenshot'
+mesg="DIR: ~/Screenshots"
+
+SAVE_DIR=$(cat ~/.config/ml4w/settings/screenshot-folder)
+SAVE_FILENAME=$(cat ~/.config/ml4w/settings/screenshot-filename)
+eval screenshot_folder="$SAVE_DIR"
+eval NAME="$SAVE_FILENAME"
+
+# Screenshot Editor
+export GRIMBLAST_EDITOR="$(cat ~/.config/ml4w/settings/screenshot-editor)"
+
+# Example for keybindings
+# bind = SUPER, p, exec, grimblast save active
+# bind = SUPER SHIFT, p, exec, grimblast save area
+# bind = SUPER ALT, p, exec, grimblast save output
+# bind = SUPER CTRL, p, exec, grimblast save screen
+
+# Quick instant mode: full screen
+take_instant_full() {
+    grim "$NAME" && notify-send -t 1000 "Screenshot saved to $screenshot_folder/$NAME"
+    [[ -f "$HOME/$NAME" && -d "$screenshot_folder" && -w "$screenshot_folder" ]] && mv "$HOME/$NAME" "$screenshot_folder/"
 }
 
-# Saves the current shader and turns it off
-save_shader() {
-	shader=$(hyprshade current)
-	hyprshade off
-	trap restore_shader EXIT
+# Quick instant mode: area selection
+take_instant_area() {
+    local pid_picker region
+
+    # freeze screen for region selection
+    hyprpicker -r -z &
+    pid_picker=$!
+    trap 'kill "$pid_picker" 2>/dev/null' EXIT
+    sleep 0.1
+
+    # user selects region; kill picker on cancel
+    region=$(slurp -b "#00000080" -c "#888888ff" -w 1) || exit 0
+    [[ -z "$region" ]] && exit 0
+
+    # unfreeze screen
+    kill "$pid_picker" 2>/dev/null
+    trap - EXIT
+
+    # capture and notify
+    grim -g "$region" "$NAME" && notify-send -t 1000 "Screenshot saved to $screenshot_folder/$NAME"
+    [[ -f "$HOME/$NAME" && -d "$screenshot_folder" && -w "$screenshot_folder" ]] && mv "$HOME/$NAME" "$screenshot_folder/"
 }
 
-save_shader # Saving the current shader
-
-if [ -z "$XDG_PICTURES_DIR" ]; then
-	XDG_PICTURES_DIR="$HOME/Pictures"
+# Handle instant flags
+if [[ "$1" == "--instant" ]]; then
+    take_instant_full
+    exit 0
+elif [[ "$1" == "--instant-area" ]]; then
+    take_instant_area
+    exit 0
 fi
 
-scrDir=$(dirname "$(realpath "$0")")
-source $scrDir/globalcontrol.sh
-swpy_dir="${confDir}/swappy"
-save_dir="${2:-$XDG_PICTURES_DIR/Screenshots}"
-save_file=$(date +'%y%m%d_%Hh%Mm%Ss_screenshot.png')
-temp_screenshot="/tmp/screenshot.png"
+# Options
+option_1="Immediate"
+option_2="Delayed"
 
-mkdir -p $save_dir
-mkdir -p $swpy_dir
-echo -e "[Default]\nsave_dir=$save_dir\nsave_filename_format=$save_file" >$swpy_dir/config
+option_capture_1="Capture Everything"
+option_capture_2="Capture Active Display"
+option_capture_3="Capture Selection"
 
-function print_error
-{
-	cat <<"EOF"
-    ./screenshot.sh <action>
-    ...valid actions are...
-        p  : print all screens
-        s  : snip current screen
-        sf : snip current screen (frozen)
-        m  : print focused monitor
-EOF
+option_time_1="5s"
+option_time_2="10s"
+option_time_3="20s"
+option_time_4="30s"
+option_time_5="60s"
+#option_time_4="Custom (in seconds)" # Roadmap or someone contribute :)
+
+list_col='1'
+list_row='2'
+
+copy='Copy'
+save='Save'
+copy_save='Copy & Save'
+edit='Edit'
+
+# Rofi CMD
+rofi_cmd() {
+    rofi -dmenu -replace -config ~/.config/rofi/config-screenshot.rasi -i -no-show-icons -l 2 -width 30 -p "Take screenshot"
 }
 
-case $1 in
-p) # print all outputs
-	grimblast copysave screen $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-s) # drag to manually snip an area / click on a window to print it
-	grimblast copysave area $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-sf) # frozen screen, drag to manually snip an area / click on a window to print it
-	grimblast --freeze copysave area $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-m) # print focused monitor
-	grimblast copysave output $temp_screenshot && restore_shader && swappy -f $temp_screenshot ;;
-*) # invalid option
-	print_error ;;
+# Pass variables to rofi dmenu
+run_rofi() {
+    echo -e "$option_1\n$option_2" | rofi_cmd
+}
+
+####
+# Choose Timer
+# CMD
+timer_cmd() {
+    rofi -dmenu -replace -config ~/.config/rofi/config-screenshot.rasi -i -no-show-icons -l 5 -width 30 -p "Choose timer"
+}
+
+# Ask for confirmation
+timer_exit() {
+    echo -e "$option_time_1\n$option_time_2\n$option_time_3\n$option_time_4\n$option_time_5" | timer_cmd
+}
+
+# Confirm and execute
+timer_run() {
+    selected_timer="$(timer_exit)"
+    if [[ "$selected_timer" == "$option_time_1" ]]; then
+        countdown=5
+        ${1}
+    elif [[ "$selected_timer" == "$option_time_2" ]]; then
+        countdown=10
+        ${1}
+    elif [[ "$selected_timer" == "$option_time_3" ]]; then
+        countdown=20
+        ${1}
+    elif [[ "$selected_timer" == "$option_time_4" ]]; then
+        countdown=30
+        ${1}
+    elif [[ "$selected_timer" == "$option_time_5" ]]; then
+        countdown=60
+        ${1}
+    else
+        exit
+    fi
+}
+###
+
+####
+# Chose Screenshot Type
+# CMD
+type_screenshot_cmd() {
+    rofi -dmenu -replace -config ~/.config/rofi/config-screenshot.rasi -i -no-show-icons -l 3 -width 30 -p "Type of screenshot"
+}
+
+# Ask for confirmation
+type_screenshot_exit() {
+    echo -e "$option_capture_1\n$option_capture_2\n$option_capture_3" | type_screenshot_cmd
+}
+
+# Confirm and execute
+type_screenshot_run() {
+    selected_type_screenshot="$(type_screenshot_exit)"
+    if [[ "$selected_type_screenshot" == "$option_capture_1" ]]; then
+        option_type_screenshot=screen
+        ${1}
+    elif [[ "$selected_type_screenshot" == "$option_capture_2" ]]; then
+        option_type_screenshot=output
+        ${1}
+    elif [[ "$selected_type_screenshot" == "$option_capture_3" ]]; then
+        option_type_screenshot=area
+        ${1}
+    else
+        exit
+    fi
+}
+###
+
+####
+# Choose to save or copy photo
+# CMD
+copy_save_editor_cmd() {
+    rofi -dmenu -replace -config ~/.config/rofi/config-screenshot.rasi -i -no-show-icons -l 4 -width 30 -p "How to save"
+}
+
+# Ask for confirmation
+copy_save_editor_exit() {
+    echo -e "$copy\n$save\n$copy_save\n$edit" | copy_save_editor_cmd
+}
+
+# Confirm and execute
+copy_save_editor_run() {
+    selected_chosen="$(copy_save_editor_exit)"
+    if [[ "$selected_chosen" == "$copy" ]]; then
+        option_chosen=copy
+        ${1}
+    elif [[ "$selected_chosen" == "$save" ]]; then
+        option_chosen=save
+        ${1}
+    elif [[ "$selected_chosen" == "$copy_save" ]]; then
+        option_chosen=copysave
+        ${1}
+    elif [[ "$selected_chosen" == "$edit" ]]; then
+        option_chosen=edit
+        ${1}
+    else
+        exit
+    fi
+}
+###
+
+timer() {
+    if [[ $countdown -gt 10 ]]; then
+        notify-send -t 1000 "Taking screenshot in ${countdown} seconds"
+        countdown_less_10=$((countdown - 10))
+        sleep $countdown_less_10
+        countdown=10
+    fi
+    while [[ $countdown -ne 0 ]]; do
+        notify-send -t 1000 "Taking screenshot in ${countdown} seconds"
+        countdown=$((countdown - 1))
+        sleep 1
+    done
+}
+
+# take shots
+takescreenshot() {
+    sleep 1
+    grimblast --notify "$option_chosen" "$option_type_screenshot" $NAME
+    if [ -f $HOME/$NAME ]; then
+        if [ -d $screenshot_folder ]; then
+            mv $HOME/$NAME $screenshot_folder/
+        fi
+    fi
+}
+
+takescreenshot_timer() {
+    sleep 1
+    timer
+    sleep 1
+    grimblast --notify "$option_chosen" "$option_type_screenshot" $NAME
+    if [ -f $HOME/$NAME ]; then
+        if [ -d $screenshot_folder ]; then
+            mv $HOME/$NAME $screenshot_folder/
+        fi
+    fi
+}
+
+# Execute Command
+run_cmd() {
+    if [[ "$1" == '--opt1' ]]; then
+        type_screenshot_run
+        copy_save_editor_run "takescreenshot"
+    elif [[ "$1" == '--opt2' ]]; then
+        timer_run
+        type_screenshot_run
+        copy_save_editor_run "takescreenshot_timer"
+    fi
+}
+
+# Actions
+chosen="$(run_rofi)"
+case ${chosen} in
+    $option_1)
+        run_cmd --opt1
+        ;;
+    $option_2)
+        run_cmd --opt2
+        ;;
 esac
-
-rm "$temp_screenshot"
-
-if [ -f "${save_dir}/${save_file}" ]; then
-	notify-send -a "t1" -i "${save_dir}/${save_file}" "saved in ${save_dir}"
-fi

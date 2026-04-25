@@ -111,31 +111,31 @@
   },
   "geometry-of-import-foreign-geometry": {
     "frame_geometry": {
-      "height": 509,
-      "width": 945,
-      "x": 0,
-      "y": 0
+      "height": 531,
+      "width": 949,
+      "x": 486,
+      "y": 292
     },
     "full_screened": false,
     "geometry": {
       "height": 509,
       "width": 945,
-      "x": 0,
-      "y": 0
+      "x": 488,
+      "y": 312
     },
     "maximized": true,
     "normal_geometry": {
-      "height": 1048,
-      "width": 960,
+      "height": 509,
+      "width": 945,
       "x": 0,
       "y": 0
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAAAAAAAAAAAA7AAAAH8AAAAAAAAAAAAAAO/AAAEFwAAAAACAAAAB4AAAAAAAAAAAAAAA7AAAAH8"
+      "__value__": "AdnQywADAAAAAAHmAAABJAAABZoAAAM2AAAAAAAAAAAAAAOwAAAB/AAAAAACAAAAB4AAAAHoAAABOAAABZgAAAM0"
     },
     "screen": {
-      "depth": 32,
+      "depth": 24,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
         "height": 1080,
@@ -144,8 +144,8 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "Xiaomi Corporation",
-      "model": "A24FAA-RG",
+      "manufacturer": "SKYDATA S.P.A.",
+      "model": "SKYWORTH MNT",
       "name": "DP-1",
       "serial": "",
       "size_in_logical_pixels": {
@@ -162,31 +162,31 @@
   },
   "geometry-of-main_window_geometry": {
     "frame_geometry": {
-      "height": 1028,
-      "width": 945,
-      "x": 0,
-      "y": 0
+      "height": 1032,
+      "width": 950,
+      "x": 963,
+      "y": 41
     },
     "full_screened": false,
     "geometry": {
-      "height": 1028,
-      "width": 945,
-      "x": 0,
-      "y": 0
+      "height": 1030,
+      "width": 948,
+      "x": 964,
+      "y": 42
     },
-    "maximized": true,
+    "maximized": false,
     "normal_geometry": {
-      "height": 1048,
-      "width": 960,
-      "x": 0,
-      "y": 0
+      "height": 1030,
+      "width": 948,
+      "x": 964,
+      "y": 42
     },
     "qt": {
       "__class__": "bytearray",
-      "__value__": "AdnQywADAAAAAAAAAAAAAAAAA7AAAAQDAAAAAAAAAAAAAAO/AAAEFwAAAAACAAAAB4AAAAAAAAAAAAAAA7AAAAQD"
+      "__value__": "AdnQywADAAAAAAPDAAAAKQAAB3gAAAQwAAADxAAAACoAAAd3AAAELwAAAAAAAAAAB4AAAAPEAAAAKgAAB3cAAAQv"
     },
     "screen": {
-      "depth": 32,
+      "depth": 24,
       "device_pixel_ratio": 1.0,
       "geometry_in_logical_pixels": {
         "height": 1080,
@@ -195,8 +195,8 @@
         "y": 0
       },
       "index_in_screens_list": 0,
-      "manufacturer": "Xiaomi Corporation",
-      "model": "A24FAA-RG",
+      "manufacturer": "SKYDATA S.P.A.",
+      "model": "SKYWORTH MNT",
       "name": "DP-1",
       "serial": "",
       "size_in_logical_pixels": {
@@ -213,7 +213,7 @@
   },
   "main_window_state": {
     "__class__": "bytearray",
-    "__value__": "AAAA/wAAAAD9AAAABAAAAAAAAADTAAADsvwCAAAABfsAAAAkAGYAaQBsAGUAcwAtAGIAcgBvAHcAcwBlAHIALQBkAG8AYwBrAQAAADwAAAOyAAAAWAD////7AAAAHgB0AG8AYwAtAHYAaQBlAHcAZQByAC0AZABvAGMAawAAAAAA/////wAAAFgA////+wAAACAAdABlAHgAdAAtAHMAZQBhAHIAYwBoAC0AZABvAGMAawAAAAAA/////wAAAHgA////+wAAACAAYwBoAGUAYwBrAHAAbwBpAG4AdABzAC0AZABvAGMAawAAAAAA/////wAAAIgA////+wAAACYAcwBhAHYAZQBkAC0AcwBlAGEAcgBjAGgAZQBzAC0AZABvAGMAawAAAAAA/////wAAAfcA////AAAAAQAAAlMAAAOy/AIAAAAC+wAAABgAcAByAGUAdgBpAGUAdwAtAGQAbwBjAGsBAAAAPAAAA7IAAABPAP////sAAAAaAGwAaQB2AGUALQBjAHMAcwAtAGQAbwBjAGsAAAAAAP////8AAABYAP///wAAAAIAAAAAAAAAAPwBAAAAAfsAAAAeAGMAaABlAGMAawAtAGIAbwBvAGsALQBkAG8AYwBrAAAAAAD/////AAAAkAD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAHABpAG4AcwBwAGUAYwB0AG8AcgAtAGQAbwBjAGsAAAAAAP////8AAAAzAP///wAAAH8AAAOyAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGcAbABvAGIAYQBsAC0AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAC0AYgBhAHIBAAABJv////8AAAAAAAAAAAAAABYAcABsAHUAZwBpAG4AcwAtAGIAYQByAAAAAAD/////AAAAAAAAAAA="
+    "__value__": "AAAA/wAAAAD9AAAABAAAAAAAAADTAAADsfwCAAAABfsAAAAkAGYAaQBsAGUAcwAtAGIAcgBvAHcAcwBlAHIALQBkAG8AYwBrAQAAAD4AAAOxAAAAWgD////7AAAAHgB0AG8AYwAtAHYAaQBlAHcAZQByAC0AZABvAGMAawAAAAAA/////wAAAFoA////+wAAACAAdABlAHgAdAAtAHMAZQBhAHIAYwBoAC0AZABvAGMAawAAAAAA/////wAAAH0A////+wAAACAAYwBoAGUAYwBrAHAAbwBpAG4AdABzAC0AZABvAGMAawAAAAAA/////wAAAIwA////+wAAACYAcwBhAHYAZQBkAC0AcwBlAGEAcgBjAGgAZQBzAC0AZABvAGMAawAAAAAA/////wAAAhUA////AAAAAQAAAlMAAAOx/AIAAAAC+wAAABgAcAByAGUAdgBpAGUAdwAtAGQAbwBjAGsBAAAAPgAAA7EAAABTAP////sAAAAaAGwAaQB2AGUALQBjAHMAcwAtAGQAbwBjAGsAAAAAAP////8AAABaAP///wAAAAIAAAAAAAAAAPwBAAAAAfsAAAAeAGMAaABlAGMAawAtAGIAbwBvAGsALQBkAG8AYwBrAAAAAAD/////AAAAkAD///8AAAADAAAAAAAAAAD8AQAAAAH7AAAAHABpAG4AcwBwAGUAYwB0AG8AcgAtAGQAbwBjAGsAAAAAAP////8AAAA1AP///wAAAIIAAAOxAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAMAAAAUAGcAbABvAGIAYQBsAC0AYgBhAHIBAAAAAP////8AAAAAAAAAAAAAABIAdABvAG8AbABzAC0AYgBhAHIBAAABJv////8AAAAAAAAAAAAAABYAcABsAHUAZwBpAG4AcwAtAGIAYQByAAAAAAD/////AAAAAAAAAAA="
   },
   "reports-ui-state": {},
   "saved_seaches_state": {
