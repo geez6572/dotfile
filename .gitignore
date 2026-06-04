@@ -13,6 +13,7 @@
 !/hypr/
 !/kitty/
 !/neofetch/
+!/emacs/
 !/nvim/
 !/polybar/
 !/ranger/
@@ -34,3 +35,5 @@
 !/keyd/
 !/ghostty/
 !/niri/
+!/starship/
+starship/active.toml
