@@ -29,3 +29,4 @@ export OPENAI_BASE_URL="https://www.88code.org/openai/v1"
 export OPENAI_API_KEY="88_0d638d06899b97385520e08083e9e6d4e7d4a24d27f2b647b890f6bd8d8ac1a4"
 export GEMINI_API_KEY="AIzaSyABxuillfTnWfOFRNjEteMOmBMZedDPgfU"
 . "$HOME/.cargo/env"
+

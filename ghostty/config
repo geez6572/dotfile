@@ -70,7 +70,8 @@ clipboard-read = allow
 clipboard-write = allow
 clipboard-trim-trailing-spaces = true
 copy-on-select = true
-
+# 允许直接退出
+quit-after-last-window-closed = true
 
 # keybinds
 
@@ -102,3 +103,5 @@ keybind = alt+eight=unbind
 keybind = alt+nine=unbind
 keybind = alt+zero=unbind
 keybind = shift+enter=text:\n
+
+keybind = alt+q=close_surface

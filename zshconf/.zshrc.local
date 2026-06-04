@@ -2,10 +2,101 @@
 
 # Theme
 if (( $+commands[starship] )); then
-    # Load starship theme (requires nerd fonts)
+    _SS_DIR="$HOME/.config/starship"
+    _SS_LAYOUT_DIR="$_SS_DIR/layouts"
+    _SS_COLOR_DIR="$_SS_DIR/colors"
+    _SS_LAYOUT_FILE="$_SS_DIR/.current-layout"
+    _SS_COLOR_FILE="$_SS_DIR/.current-colors"
+    _SS_ACTIVE="$_SS_DIR/active.toml"
+    _SS_DEFAULT_LAYOUT="split"
+    _SS_DEFAULT_COLOR="tokyo-night"
+
+    _ss_read() { [[ -f "$1" ]] && cat "$1" || echo "$2"; }
+
+    _ss_build() {
+        local color="$1"
+        local lf="$_SS_LAYOUT_DIR/${_SS_DEFAULT_LAYOUT}.toml"
+        local cf="$_SS_COLOR_DIR/${color}.toml"
+        if [[ ! -f "$lf" ]]; then echo "Layout not found: $_SS_DEFAULT_LAYOUT"; return 1; fi
+        if [[ ! -f "$cf" ]]; then echo "Color not found: $color"; return 1; fi
+        cat "$lf" "$cf" > "$_SS_ACTIVE"
+    }
+
+    _ss_color="$(_ss_read "$_SS_COLOR_FILE" "$_SS_DEFAULT_COLOR")"
+
+    if _ss_build "$_ss_color" 2>/dev/null; then
+        export STARSHIP_CONFIG="$_SS_ACTIVE"
+    fi
+
     eval "$(starship init zsh)"
+
+    function sst() {
+        local color
+        _ss_color="$(_ss_read "$_SS_COLOR_FILE" "$_SS_DEFAULT_COLOR")"
+
+        case "$1" in
+            -l)
+                echo "Colors (current: $_ss_color):"
+                for f in "$_SS_COLOR_DIR"/*.toml; do
+                    local n="$(basename "$f" .toml)"
+                    [[ "$n" == "$_ss_color" ]] && echo "  * $n" || echo "    $n"
+                done
+                return 0
+                ;;
+            -C)
+                if [[ -z "$2" ]]; then
+                    if (( $+commands[fzf] )); then
+                        color="$(ls "$_SS_COLOR_DIR"/*.toml | xargs -n1 basename | sed 's/\.toml$//' | fzf --prompt='color> ' --height=~40% --layout=reverse --preview="cat $_SS_COLOR_DIR/{}.toml")"
+                    else
+                        echo "Usage: sst -C <color_name>"; return 1
+                    fi
+                else
+                    color="$2"
+                fi
+                [[ -z "$color" ]] && return 0
+                if [[ ! -f "$_SS_COLOR_DIR/${color}.toml" ]]; then
+                    echo "Color not found: $color"; return 1
+                fi
+                echo "$color" > "$_SS_COLOR_FILE"
+                _ss_build "$color" || return 1
+                export STARSHIP_CONFIG="$_SS_ACTIVE"
+                echo "Color: $color"
+                ;;
+            -r)
+                echo "$_SS_DEFAULT_COLOR" > "$_SS_COLOR_FILE"
+                _ss_build "$_SS_DEFAULT_COLOR" || return 1
+                export STARSHIP_CONFIG="$_SS_ACTIVE"
+                echo "Reset to: $_SS_DEFAULT_COLOR"
+                ;;
+            "")
+                if (( ! $+commands[fzf] )); then
+                    echo "Usage: sst <color>        Switch color"
+                    echo "       sst                Interactive (requires fzf)"
+                    echo "       sst -l             List colors"
+                    echo "       sst -C <color>     Switch color"
+                    echo "       sst -r             Reset to default"
+                    return 1
+                fi
+                color="$(ls "$_SS_COLOR_DIR"/*.toml | xargs -n1 basename | sed 's/\.toml$//' | fzf --prompt='color> ' --height=~40% --layout=reverse --preview="cat $_SS_COLOR_DIR/{}.toml")"
+                [[ -z "$color" ]] && return 0
+                echo "$color" > "$_SS_COLOR_FILE"
+                _ss_build "$color" || return 1
+                export STARSHIP_CONFIG="$_SS_ACTIVE"
+                echo "Color: $color"
+                ;;
+            *)
+                color="$1"
+                if [[ ! -f "$_SS_COLOR_DIR/${color}.toml" ]]; then
+                    echo "Color not found: $color"; return 1
+                fi
+                echo "$color" > "$_SS_COLOR_FILE"
+                _ss_build "$color" || return 1
+                export STARSHIP_CONFIG="$_SS_ACTIVE"
+                echo "Color: $color"
+                ;;
+        esac
+    }
 else
-    # Load the pure theme, with zsh-async library that's bundled with it.
     zinit ice depth"1" pick"async.zsh" src"pure.zsh"
     zinit light sindresorhus/pure
 fi
@@ -63,29 +154,31 @@ fi
 # alias flush_dns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
 
 # Homebrew
-if [[ $OSTYPE == darwin* ]]; then
-    function set_homebrew_env()
-    {
-        # https://mirrors.ustc.edu.cn/
-        # https://mirrors.tnua.tsinghua.edu.cn/
-        export HOMEBREW_API_DOMAIN="https://mirrors.bfsu.edu.cn/homebrew-bottles/api"
-        export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.bfsu.edu.cn/homebrew-bottles"
-        export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.bfsu.edu.cn/git/homebrew/brew.git"
-        export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.bfsu.edu.cn/git/homebrew/homebrew-core.git"
-        export HOMEBREW_PIP_INDEX_URL="https://mirrors.bfsu.edu.cn/pypi/web/simple"
+if [[ "$OSTYPE" == darwin* ]]; then
+
+    # 设置 Homebrew 镜像环境变量
+    function set_homebrew_env() {
+        export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+        export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+        export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+        export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+        export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
     }
 
+    # 切换到国内镜像
     function set_homebrew_mirror() {
         set_homebrew_env
 
         for tap in core cask{,-fonts,-versions} command-not-found services; do
-            brew tap --custom-remote --force-auto-update "homebrew/${tap}" "https://mirrors.bfsu.edu.cn/git/homebrew/homebrew-${tap}.git"
+            brew tap --custom-remote --force-auto-update "homebrew/${tap}" \
+                "https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-${tap}.git"
         done
 
         brew update
     }
 
-    function reset_homebrew_env {
+    # 重置环境变量
+    function reset_homebrew_env() {
         unset HOMEBREW_API_DOMAIN
         unset HOMEBREW_BOTTLE_DOMAIN
         unset HOMEBREW_BREW_GIT_REMOTE
@@ -93,27 +186,26 @@ if [[ $OSTYPE == darwin* ]]; then
         unset HOMEBREW_PIP_INDEX_URL
     }
 
+    # 重置到官方源
     function reset_homebrew_mirror() {
         reset_homebrew_env
 
         git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew
 
-        BREW_TAPS="$(BREW_TAPS="$(brew tap 2>/dev/null)"; echo -n "${BREW_TAPS//$'\n'/:}")"
         for tap in core cask{,-fonts,-versions} command-not-found services; do
-            if [[ ":${BREW_TAPS}:" == *":homebrew/${tap}:"* ]]; then
-                brew tap --custom-remote "homebrew/${tap}" "https://github.com/Homebrew/homebrew-${tap}"
-            fi
+            brew tap --custom-remote "homebrew/${tap}" "https://github.com/Homebrew/homebrew-${tap}"
         done
 
         brew update
     }
 
-    # Use mirror env by default
-    set_homebrew_env
+    # 可选：启动默认不自动设置镜像，手动调用 set_homebrew_mirror
+   # reset_homebrew_env
 
-    # For Apple Silicon CPU
-    [[ $CPUTYPE == arm* ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+    # Apple Silicon 检测
+
 fi
+
 
 # Golang
 # Go Proxy

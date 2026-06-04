@@ -1,0 +1,12 @@
+[palettes.theme]
+bg1 = '#9A348E'
+bg2 = '#DA627D'
+bg3 = '#FCA17D'
+bg4 = '#86BBD8'
+bg5 = '#33658A'
+fg1 = '#ffffff'
+fg2 = '#ffffff'
+fg3 = '#b0b0b0'
+accent = '#06969A'
+ok = '#86BBD8'
+err = '#DA627D'

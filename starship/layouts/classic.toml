@@ -1,0 +1,78 @@
+palette = 'theme'
+
+format = """
+[┌───────────────────>](bold fg:fg3)\
+$cmd_duration\
+$line_break\
+[│](bold fg:fg3)\
+$directory\
+$git_branch\
+$git_status\
+$line_break\
+[└─>](bold fg:fg3)\
+$nodejs\
+$bun\
+$rust\
+$golang\
+$python\
+$docker_context\
+$character"""
+
+[character]
+success_symbol = "[\$](bold fg:ok)"
+error_symbol = "[\$](bold fg:err)"
+vimcmd_symbol = "[<](bold fg:ok)"
+
+[directory]
+style = "bold fg:bg2"
+format = "[$path]($style) "
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+
+[git_branch]
+symbol = ""
+format = "on [$symbol$branch]($style) "
+style = "fg:accent"
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "fg:bg2"
+
+[cmd_duration]
+min_time = 2_000
+format = " took [$duration]($style)"
+style = "fg:accent"
+show_milliseconds = false
+
+[nodejs]
+format = " [$symbol($version)]($style)"
+style = "fg:bg2"
+
+[bun]
+format = " [$symbol($version)]($style)"
+style = "fg:bg2"
+
+[rust]
+format = " [$symbol($version)]($style)"
+style = "fg:bg2"
+
+[golang]
+format = " [$symbol($version)]($style)"
+style = "fg:bg2"
+
+[python]
+format = " [$symbol($version)(\($virtualenv\))]($style)"
+style = "fg:bg2"
+
+[docker_context]
+format = " [$symbol$context]($style)"
+style = "fg:bg2"
+
+[line_break]
+disabled = false

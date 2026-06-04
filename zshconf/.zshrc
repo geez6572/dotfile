@@ -1,9 +1,6 @@
 # Zsh configuration
 
 # vars
-DOTFILES=$HOME/.dotfiles
-EMACSD=$HOME/.emacs.d
-
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -13,6 +10,7 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
             print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
+
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
@@ -75,12 +73,6 @@ fi
 zinit ice wait lucid depth"1" as"program" pick"$ZPFX/bin/git-*" src"etc/git-extras-completion.zsh" make"PREFIX=$ZPFX" if'(( $+commands[make] ))'
 zinit light tj/git-extras
 
-# Prettify ls
-if (( $+commands[gls] )); then
-    alias ls='gls --color=tty --group-directories-first'
-else
-    alias ls='ls --color=tty --group-directories-first'
-fi
 
 # Homebrew completion
 if type brew &>/dev/null; then
@@ -236,10 +228,6 @@ if (( $+commands[eza] )); then
     alias l='ls -lhF'
     alias la='ls -lhAF'
     alias tree='ls --tree'
-elif (( $+commands[exa] )); then
-    alias ls='exa --color=auto --icons --group-directories-first'
-    alias la='ls -lahF'
-    alias tree='ls --tree'
 fi
 (( $+commands[bat] )) && alias cat='bat -p --wrap character'
 (( $+commands[fd] )) && alias find=fd
@@ -298,13 +286,15 @@ for item in json.loads(sys.stdin.read()):
 
 # Proxy
 PROXY=http://127.0.0.1:9999         # ss:1088, vr:8001
+ALLPROXY=socks5://127.0.0.1:9999
 NO_PROXY=10.*.*.*,192.168.*.*,*.local,localhost,127.0.0.1
 alias showproxy='echo "proxy=$http_proxy"'
-alias connCompany='sudo openvpn --config /home/ce/soft/openvpn/xuexinyu.ovpn'
-alias setproxy='export http_proxy=$PROXY; export https_proxy=$PROXY; all_proxy=$PROXY; export no_proxy=$NO_PROXY; showproxy'
+alias connCompany='sudo openvpn --config $HOME/soft/openvpn/xuexinyu.ovpn'
+alias setproxy='export http_proxy=$PROXY; export https_proxy=$PROXY; all_proxy=$ALLPROXY; export no_proxy=$NO_PROXY; showproxy'
 alias unsetproxy='export http_proxy=; export https_proxy=; export all_proxy=; export no_proxy=; showproxy'
 alias toggleproxy='if [ -n "$http_proxy" ]; then unsetproxy; else setproxy; fi'
 
 # Local customizations, e.g. theme, plugins, aliases, etc.
 [ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
 ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
+

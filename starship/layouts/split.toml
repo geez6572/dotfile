@@ -1,0 +1,128 @@
+palette = 'theme'
+
+add_newline = true
+continuation_prompt = "[▸▹ ](fg:fg3)"
+
+format = """($nix_shell$container$fill$git_metrics\n)$cmd_duration\
+$hostname\
+$localip\
+$shlvl\
+$shell\
+$env_var\
+$jobs\
+$sudo\
+$username\
+$character"""
+
+right_format = """
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$golang\
+$nodejs\
+$bun\
+$python\
+$rust\
+$java\
+$kotlin\
+$haskell\
+$docker_context\
+$package\
+$time"""
+
+[fill]
+symbol = ' '
+
+[character]
+format = "$symbol "
+success_symbol = "[◎](bold italic fg:bg2)"
+error_symbol = "[○](italic fg:err)"
+vimcmd_symbol = "[■](italic fg:ok)"
+
+[username]
+style_user = "bold italic fg:bg2"
+style_root = "bold italic fg:err"
+format = "[$user]($style) "
+disabled = false
+show_always = false
+
+[directory]
+home_symbol = "⌂"
+truncation_length = 2
+truncation_symbol = "… "
+read_only = " ◈"
+style = "italic fg:bg2"
+format = '[$path]($style)[$read_only]($read_only_style)'
+repo_root_style = 'bold fg:bg2'
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style)'
+
+[cmd_duration]
+format = "[◄ $duration ](italic fg:fg1)"
+
+[jobs]
+format = "[$symbol$number]($style) "
+style = "fg:fg1"
+symbol = "[▶](italic fg:bg2)"
+
+[time]
+disabled = false
+format = "[ $time]($style)"
+time_format = "%R"
+style = "italic fg:fg3"
+
+[git_branch]
+format = " [$branch(:$remote_branch)]($style) "
+symbol = "[△](bold italic fg:bg2)"
+style = "italic fg:bg2"
+truncation_symbol = "…"
+truncation_length = 11
+
+[git_metrics]
+format = '([▴$added]($added_style))([▿$deleted]($deleted_style))'
+added_style = 'italic fg:ok'
+deleted_style = 'italic fg:err'
+ignore_submodules = true
+disabled = false
+
+[git_status]
+style = "bold italic fg:bg2"
+format = "([⎪$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed⎥]($style))"
+conflicted = "[◪◦](italic fg:accent)"
+ahead = "[▴│[${count}](bold fg:fg1)│](italic fg:ok)"
+behind = "[▿│[${count}](bold fg:fg1)│](italic fg:err)"
+diverged = "[◇ ▴┤[${ahead_count}](fg:fg1)│▿┤[${behind_count}](fg:fg1)│](italic fg:accent)"
+untracked = "[◌◦](italic fg:accent)"
+stashed = "[◃◈](italic fg:fg1)"
+modified = "[●◦](italic fg:accent)"
+staged = "[▪┤[$count](bold fg:fg1)│](italic fg:bg2)"
+renamed = "[◎◦](italic fg:bg2)"
+deleted = "[✕](italic fg:err)"
+
+[nodejs]
+format = " [node](italic) [◫ ($version)](bold fg:ok)"
+detect_files = ["package-lock.json", "yarn.lock"]
+detect_folders = ["node_modules"]
+detect_extensions = []
+
+[bun]
+format = " [bun](italic) [◫ ($version)](bold fg:ok)"
+
+[python]
+format = " [py](italic) [${symbol}${version}]($style)"
+symbol = "[⌉](bold fg:bg2)⌊ "
+style = "bold fg:accent"
+
+[rust]
+format = " [rs](italic) [$symbol$version]($style)"
+symbol = "⊃ "
+style = "bold fg:err"
+
+[golang]
+format = " [go](italic) [∩ ($version)](bold fg:bg2)"
+
+[docker_context]
+format = " [docker ◧ $context]($style)"
+style = "fg:bg2"
